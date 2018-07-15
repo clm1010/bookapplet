@@ -14,8 +14,8 @@ export default {
     pages: ['pages/logs/main', '^pages/index/main'],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'bookapplet',
+      navigationBarBackgroundColor: '#EA5149',
+      navigationBarTitleText: '我的图书',
       navigationBarTextStyle: 'black'
     }
   }
