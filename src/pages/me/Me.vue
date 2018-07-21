@@ -10,7 +10,11 @@
 </div>
 </template>
 <script>
-import { post, showSuccess, showModal } from '@/util'
+import {
+  post,
+  showSuccess,
+  showModal
+} from '@/util'
 import qcloud from 'wafer2-client-sdk'
 import config from '@/config'
 import YearProgress from '@/components/YearProgress'
@@ -44,7 +48,11 @@ export default {
         }
       })
     },
-    getWxLogin: function ({ encryptedData, iv, userinfo }) {
+    getWxLogin: function ({
+      encryptedData,
+      iv,
+      userinfo
+    }) {
       const self = this
       wx.login({
         success: function (loginResult) {

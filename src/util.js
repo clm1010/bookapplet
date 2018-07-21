@@ -21,6 +21,7 @@ function request (url, method, data) {
         if (res.data.code === 0) {
           resolve(res.data.data)
         } else {
+          showModal('失败！', res.data.data.msg)
           reject(res.data)
         }
       }
@@ -36,11 +37,11 @@ export function showSuccess (text) {
     duration: 2000
   })
 }
-
-export function showModal (text, erro) {
-  wx.showToast({
-    title: text + erro,
-    icon: 'success',
-    duration: 2000
+// 模态框
+export function showModal (title, content) {
+  wx.showModal({
+    title,
+    content,
+    showCancel: false
   })
 }

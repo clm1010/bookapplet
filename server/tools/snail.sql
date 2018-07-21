@@ -10,6 +10,6 @@ create table books (
   summary varchar(1000) not null,
   price varchar(100),
   rate float,
-  tags varchar(100),
+  tags varchar(1000),
   author varchar(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='图书表';

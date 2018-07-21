@@ -1,7 +1,7 @@
 <template>
   <div class="progressbar">
-    <progress percent="20" activeColor='#EA5A49' />
-    <p>{{year}}已经过去了{{days}}天，20%</p>
+    <progress :percent="percent" activeColor='#EA5A49' />
+    <p>{{year}}已经过去了{{days}}天，{{percent}}%</p>
   </div>
 </template>
 
@@ -37,6 +37,10 @@ export default {
       // 今天的时间戳 减去今年第一天的时间戳
       let offset = new Date().getTime() - start.getTime()
       return parseInt(offset / 1000 / 60 / 60 / 24) + 1
+    },
+    percent () {
+      // toFixed小数点后面保留一位
+      return (this.days * 100 / this.getDayOfYead()).toFixed(1)
     }
   }
 }
@@ -44,6 +48,9 @@ export default {
 
 <style lang="scss">
 .progressbar{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 40px;
   width: 100%;
   progress {
     margin-bottom: 10px;
