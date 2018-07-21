@@ -1,47 +1,98 @@
 <template>
-<div class="book-card">
-  <div class="thumb">
-    <img class="img" :src="book.image" :alt="book.title" modle='aspectFit'>
-  </div>
-  <div class="detail">
-    <div class="row">
-      <div class="right">
-        {{book.rate}}
+<a :href="detailUrl">
+  <div class="book-card">
+    <div class="thumb" @click.stop='preview'>
+      <img class="img" :src="book.image" modle='aspectFit'>
+    </div>
+    <div class="detail">
+      <div class="row text-primary">
+        <div class="right">
+          {{book.rate}}<Rate :value='book.rate'></Rate>
+        </div>
+        <div class="left">
+          {{book.title}}
+        </div>
       </div>
-      <div class="left">
-        {{book.title}}
+      <div class="row">
+        <div class="right text-primary">
+          浏览量：{{book.count}}
+        </div>
+        <div class="left">
+          {{book.author}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="right">
+          {{book.user_info.nickName}}
+        </div>
+        <div class="left">
+          {{book.publisher}}
+        </div>
       </div>
     </div>
   </div>
-</div>
+</a>
 </template>
 
 <script>
+import Rate from '@/components/Rate'
 export default {
+  components: {
+    Rate
+  },
   props: {
     book: Array
+  },
+  data () {
+    return {}
+  },
+  methods: {
+    // 点图书图片放大
+    preview () {
+      wx.previewImage({
+        current: this.book.image,
+        urls: [this.book.image]
+      })
+    }
+  },
+  computed: {
+    detailUrl () {
+      return '/pages/detail/main?id=' + this.book.id
+    }
   }
 }
 </script>
 
-<style lang="scss">
-.book-card{
+<style lang="scss" scoped>
+.book-card {
+  padding: 5px;
+  overflow: hidden;
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 5px;
-  display: flex;
-  overflow: hidden;
-  .thumb{
-    flex: 1;
+  font-size: 14px;
+  .thumb {
     width: 90px;
-    height: 90px;
-    .img{
+    height: 100px;
+    float: left;
+    margin: 0 auto;
+    overflow: hidden;
+    .img {
       max-width: 100%;
       max-height: 100%;
     }
   }
-  .detail{
-    flex: 3;
+  .detail {
+    margin-left: 100px;
+    .row {
+      line-height: 20px;
+      margin-bottom: 3px;
+      .left {
+        margin-right: 80px;
+      }
+      .right {
+        float: right;
+      }
+    }
   }
 }
 </style>

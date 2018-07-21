@@ -1,15 +1,41 @@
--- books
-create table books (
-  id int not null auto_increment primary key,
-  isbn varchar(20) not null,
-  openid varchar(50) not null,
-  title varchar(100) not null,
-  image varchar(100),
-  alt varchar(100) not null,
-  publisher varchar(100) not null,
-  summary varchar(1000) not null,
-  price varchar(100),
-  rate float,
-  tags varchar(1000),
-  author varchar(100)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='图书表';
+/*
+ Navicat MySQL Data Transfer
+
+ Source Server         : clm
+ Source Server Type    : MySQL
+ Source Server Version : 50722
+ Source Host           : localhost:3306
+ Source Schema         : mybook
+
+ Target Server Type    : MySQL
+ Target Server Version : 50722
+ File Encoding         : 65001
+
+ Date: 22/07/2018 00:20:04
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for books
+-- ----------------------------
+DROP TABLE IF EXISTS `books`;
+CREATE TABLE `books`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `isbn` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `openid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `alt` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `publisher` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `summary` varchar(3000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `rate` float NULL DEFAULT NULL,
+  `tags` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `author` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `count` int(11) NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '图书表' ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;

@@ -33,6 +33,7 @@ const CONF = {
         user: 'root',
         db: 'myBook',
         pass: 'clm1010',
+        // pass: 'wxbe1f104dbced345d',
         char: 'utf8mb4'
     },
 
