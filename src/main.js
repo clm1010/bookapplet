@@ -15,13 +15,13 @@ export default {
     pages: ['^pages/books/main'],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#EA5149',
+      navigationBarBackgroundColor: '#0084FF',
       navigationBarTitleText: '我的图书',
       navigationBarTextStyle: 'black'
     },
     // 导航配置
     tabBar: {
-      selectedColor: '#EA5149',
+      selectedColor: '#0084FF',
       list: [
         {
           pagePath: 'pages/books/main',

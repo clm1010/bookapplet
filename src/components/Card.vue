@@ -5,16 +5,16 @@
       <img class="img" :src="book.image" modle='aspectFit'>
     </div>
     <div class="detail">
-      <div class="row text-primary">
-        <div class="right">
-          {{book.rate}}<Rate :value='book.rate'></Rate>
+      <div class="row">
+        <div class="right text-warning">
+          {{book.rate}}<rate :value='book.rate'></rate>
         </div>
-        <div class="left">
+        <div class="left text-danger">
           {{book.title}}
         </div>
       </div>
       <div class="row">
-        <div class="right text-primary">
+        <div class="right text-danger">
           浏览量：{{book.count}}
         </div>
         <div class="left">

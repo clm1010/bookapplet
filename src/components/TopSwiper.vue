@@ -3,7 +3,7 @@
    <swiper
    :indicator-dots='true'
    indicator-color='#CCCCCC'
-   indicator-active-color='#EA5A49'
+   indicator-active-color='#0084FF'
    :autoplay='true'
    :interval='5000'
    :duration='1000'

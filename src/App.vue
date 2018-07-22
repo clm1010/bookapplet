@@ -37,17 +37,32 @@ export default {
 </script>
 
 <style>
-.text-footer{
+html {
+  color: #333333;
+  line-height: 1.5;
+}
+.text-footer {
   text-align: center;
   font-size: 12px;
   margin-bottom: 20px;
 }
-.text-primary{
-  color:#EA5A49;
+.text-footer {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.text-primary {
+  color: #0084ff;
+}
+.text-danger {
+  color: #c9302c;
+}
+.text-warning {
+  color: #ec971f;
 }
 .btn {
-  color: #FFFFFF;
-  background-color: #EA5A49;
+  color: #ffffff;
+  background-color: #0084ff;
   margin-bottom: 10px;
   padding-left: 15px;
   padding-right: 15px;
@@ -58,6 +73,6 @@ export default {
   line-height: 40px;
 }
 .btn:active {
-  background-color: #FA5A49;
+  background-color: #0084ff;
 }
 </style>

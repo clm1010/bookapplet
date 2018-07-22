@@ -30,7 +30,7 @@ module.exports = async (ctx) => {
         const { title, image, alt, publisher, summary, price } = bookinfo
         const tags = bookinfo.tags
             .map(v => {
-                return `${v.title} ${v.cont}`
+                return `${v.title} ${v.count}`
             })
             .join(',')
         const author = bookinfo.author.join(',')

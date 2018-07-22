@@ -37,7 +37,7 @@ export function showSuccess (text) {
     duration: 2000
   })
 }
-// 模态框
+// 显示模态弹窗
 export function showModal (title, content) {
   wx.showModal({
     title,
