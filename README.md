@@ -1,6 +1,6 @@
 # bookapplet
 
-> A Mpvue project
+> Mpvue 小程序项目
 
 ## Build Setup
 
