@@ -56,7 +56,6 @@ export default {
       const self = this
       wx.login({
         success: function (loginResult) {
-          console.log('loginResult', loginResult)
           var loginParams = {
             code: loginResult.code,
             encryptedData: encryptedData,
@@ -119,34 +118,13 @@ export default {
           }
         }
       })
-      // let user = wx.getStorageSync('userinfo')
-      // const self = this
-      // if (!user) {
-      // qcloud.setLoginUrl(config.loginUrl)
-      // qcloud.login({
-      // success: function (userinfo) {
-      // qcloud.request({
-      // url: config.userUrl,
-      // login: true,
-      // success (userRes) {
-      // showSuccess('登录成功')
-      // wx.setStorageSync('userinfo', userRes.data.data)
-      // self.userinfo = userRes.data.data
-      // }
-      // })
-      // }
-      // })
-      // }
     }
   },
   onShow () {
-    // console.log(123)
     let userinfo = wx.getStorageSync('userinfo')
-    // console.log([userinfo])
     if (userinfo) {
       this.userinfo = userinfo
     }
-    // console.log(this.userinfo)
   }
 }
 </script>

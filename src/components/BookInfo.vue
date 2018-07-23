@@ -108,7 +108,7 @@ export default {
       position: absolute;
       width: 100%;
       height:70%;
-      top: -10%;
+      top: -15%;
       right: 0;
       left: 0;
       bottom: 0;
@@ -119,7 +119,7 @@ export default {
       position: absolute;
       width: 100%;
       right: 0;
-      bottom: 3%;
+      bottom: 1%;
       left:0;
       text-align: center;
       .title{
