@@ -64,72 +64,60 @@ export default {
   }
 }
 </script>
-<style lang='scss' scoped>
-.book-info{
+<style lang='stylus' scoped>
+.book-info
   font-size: 14px;
-  .badge{
+  .badge
     display: inline-block;
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
     border: 1px solid #0084FF;
     color: #0084FF;
-  }
-  .summary{
+  .summary
     padding: 10px 15px;
-    p{
+    p
       text-indent: 2em;
       font-size: 14px;
-    }
-  }
-  .right{
+  .right
     float: right;
-  }
-  .owner{
+  .owner
     padding: 5px 10px;
-    .avatar{
+    .avatar
       width: 30px;
       height: 30px;
       border-radius: 50%;
       vertical-align: middle;
-    }
-  }
-  .thumb{
+  .thumb
     width: 100%;
     height: 500rpx;
     overflow: hidden;
     position: relative;
-    .back{
+    .back
       filter: blur(5px);
       width: 100%;
       height: 100%;
-    }
-    .img{
+    .img
       position: absolute;
       width: 100%;
-      height:70%;
+      height: 70%;
       top: -15%;
       right: 0;
       left: 0;
       bottom: 0;
       margin: auto;
-    }
-    .info{
-      color:#FFF;
+    .info
+      color: #FFF;
       position: absolute;
       width: 100%;
       right: 0;
       bottom: 1%;
-      left:0;
+      left: 0;
       text-align: center;
-      .title{
+      .title
         font-size: 18px;
-      }
-      .author {
+
+      .author
         font-size: 14px;
-      }
-    }
-  }
-}
 </style>
 

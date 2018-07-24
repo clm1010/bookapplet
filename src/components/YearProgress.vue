@@ -46,7 +46,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="stylus" scoped>
 .progressbar{
   text-align: center;
   margin-top: 10px;

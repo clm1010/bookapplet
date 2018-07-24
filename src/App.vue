@@ -36,31 +36,25 @@ export default {
 }
 </script>
 
-<style>
-html {
+<style lang='stylus'>
+html
   color: #333333;
   line-height: 1.5;
-}
-.text-footer {
+.text-footer
   text-align: center;
   font-size: 12px;
   margin-bottom: 20px;
-}
-.text-footer {
+.text-footer
   text-align: center;
   font-size: 14px;
   margin-bottom: 5px;
-}
-.text-primary {
+.text-primary
   color: #0084ff;
-}
-.text-danger {
+.text-danger
   color: #c9302c;
-}
-.text-warning {
+.text-warning
   color: #ec971f;
-}
-.btn {
+.btn
   color: #ffffff;
   background-color: #0084ff;
   margin-bottom: 10px;
@@ -71,8 +65,6 @@ html {
   width: 100%;
   height: 40px;
   line-height: 40px;
-}
-.btn:active {
+.btn:active
   background-color: #0084ff;
-}
 </style>

@@ -128,19 +128,15 @@ export default {
   }
 }
 </script>
-<style lang='scss'>
-.container {
+<style lang='stylus' scoped>
+.container
     padding: 0 30rpx;
-}
-
-.userinfo {
+.userinfo
     margin-top: 100rpx;
     text-align: center;
-    img {
+    img
         width: 150rpx;
         height: 150rpx;
         margin: 20rpx;
         border-radius: 50%;
-    }
-}
 </style>

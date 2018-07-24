@@ -6,6 +6,7 @@
     <div class='comment'
     v-for='(comment, comIndex) in comments'
     :key='comIndex'
+    @click = 'handleClickUser(comment)'
     >
       <div class='user'>
         <div class='inline'>
@@ -27,39 +28,45 @@
 <script>
 export default {
   props: {
-    comments: Array
+    comments: Array,
+    type: String
   },
   data () {
     return {}
-  }
-}
-</script>
-<style lang='scss' scoped>
-.comment-list {
-  background-color: #FFFFFF;
-  font-size: 14px;
-  .page-title {
-    background-color: #0084ff;
-    color: #FFFFFF;
-    font-size: 16px;
-  }
-  .comment {
-    margin: 10px;
-    border-bottom: 1px solid #EEEEEE;
-    .user {
-      .inline {
-        display: inline;
-        .avatar {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          vertical-align: middle;
-        }
-      }
-      .right {
-        float: right;
+  },
+  methods: {
+    // 点击评论跳转到所在书的详情
+    handleClickUser (comment) {
+      if (this.type === 'user') {
+        wx.navigateTo({
+          url: '/pages/detail/main?id=' + comment.bookid
+        })
       }
     }
   }
 }
+</script>
+<style lang='stylus' scoped>
+.comment-list
+  background-color: #FFFFFF;
+  font-size: 14px;
+  .page-title
+    background-color: #0084ff;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    line-height 2;
+  .comment
+    margin: 10px;
+    border-bottom: 1px solid #EEEEEE;
+    .user
+      .inline
+        display: inline;
+        .avatar
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          vertical-align: middle;
+      .right
+        float: right;
 </style>

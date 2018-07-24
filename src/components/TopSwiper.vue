@@ -53,7 +53,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="stylus" scoped>
 .swiper {
   margin-top: 5px;
   .slide-image {

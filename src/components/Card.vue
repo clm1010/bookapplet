@@ -63,36 +63,29 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.book-card {
+<style lang="stylus" scoped>
+.book-card
   padding: 5px;
   overflow: hidden;
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 14px;
-  .thumb {
+  .thumb
     width: 90px;
     height: 100px;
     float: left;
     margin: 0 auto;
     overflow: hidden;
-    .img {
+    .img
       max-width: 100%;
       max-height: 100%;
-    }
-  }
-  .detail {
+  .detail
     margin-left: 100px;
-    .row {
+    .row
       line-height: 20px;
       margin-bottom: 3px;
-      .left {
+      .left
         margin-right: 80px;
-      }
-      .right {
+      .right
         float: right;
-      }
-    }
-  }
-}
 </style>

@@ -148,7 +148,7 @@ export default {
     }
   },
   mounted () {
-    // 在所有 页面 的组件内可以通过 this.$root.$mp.query 进行获取。
+    // 在所有 页面 的组件内可以通过 this.$root.$mp.query 进行获取。 跳转获取参数
     this.bookid = this.$root.$mp.query.id
     this.getDetail()
     this.getComments()
@@ -159,24 +159,20 @@ export default {
   }
 }
 </script>
-<style lang='scss' scoped>
-.comment {
+<style lang='stylus' scoped>
+.comment
   margin-top: 10px;
-  .text-area {
+  .text-area
     width: 90%;
     min-height: 200px;
     margin: 0 auto 10px auto;
     background-color: #eeeeee;
     padding: 10px;
-  }
-  .location {
+  .location
     margin-top: 10px;
     padding: 5px 10px;
-  }
-  .phone {
+  .phone
     margin-top: 10px;
     padding: 5px 10px;
-  }
-}
 </style>
 
