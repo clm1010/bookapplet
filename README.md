@@ -1,6 +1,6 @@
 # bookapplet
 
-> CLM-MVP
+> CLM-Mpvue
 
 ## Build Setup
 
