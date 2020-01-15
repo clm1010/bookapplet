@@ -1,70 +1,50 @@
 <script>
-// import {
-//   showSuccess
-// } from '@/util'
-// import qcloud from 'wafer2-client-sdk'
-// import config from '@/config'
 export default {
-  async created () {
-    // let user = wx.getStorageSync('userinfo')
-    // console.log(user)
-    // if (!user) {
-    //   // 设置登录地址
-    //   qcloud.setLoginUrl(config.loginUrl)
-    //   qcloud.login({
-    //     success: function (userinfo) {
-    //       console.log('登录成功', userinfo)
-    //       showSuccess('登录成功')
-    //       wx.setStorageSync('userinfo', userinfo)
-    //     },
-    //     fail: function (err) {
-    //       console.log('登录失败', err)
-    //     }
-    //   })
-    // }
+  created () {
+    // 调用API从本地缓存中获取数据
+    /*
+     * 平台 api 差异的处理方式:  api 方法统一挂载到 mpvue 名称空间, 平台判断通过 mpvuePlatform 特征字符串
+     * 微信：mpvue === wx, mpvuePlatform === 'wx'
+     * 头条：mpvue === tt, mpvuePlatform === 'tt'
+     * 百度：mpvue === swan, mpvuePlatform === 'swan'
+     * 支付宝(蚂蚁)：mpvue === my, mpvuePlatform === 'my'
+     */
 
-    // const res = await get('/weapp/demo')
-    // console.log(123, res)
-    // wx.request({
-    //   url: config.host + '/weapp/demo',
-    //   sucess: function (res) {
-    //     console.log(res)
-    //   }
-    // })
-    console.log('小程序启动了')
+    let logs
+    if (mpvuePlatform === 'my') {
+      logs = mpvue.getStorageSync({key: 'logs'}).data || []
+      logs.unshift(Date.now())
+      mpvue.setStorageSync({
+        key: 'logs',
+        data: logs
+      })
+    } else {
+      logs = mpvue.getStorageSync('logs') || []
+      logs.unshift(Date.now())
+      mpvue.setStorageSync('logs', logs)
+    }
+  },
+  log () {
+    console.log(`log at:${Date.now()}`)
   }
 }
 </script>
 
-<style lang='stylus'>
-html
-  color: #333333;
-  line-height: 1.5;
-.text-footer
-  text-align: center;
-  font-size: 12px;
-  margin-bottom: 20px;
-.text-footer
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 5px;
-.text-primary
-  color: #0084ff;
-.text-danger
-  color: #c9302c;
-.text-warning
-  color: #ec971f;
-.btn
-  color: #ffffff;
-  background-color: #0084ff;
-  margin-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-radius: 2rem;
-  font-size: 16px;
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-.btn:active
-  background-color: #0084ff;
+<style>
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+/* this rule will be remove */
+* {
+  transition: width 2s;
+  -moz-transition: width 2s;
+  -webkit-transition: width 2s;
+  -o-transition: width 2s;
+}
 </style>
