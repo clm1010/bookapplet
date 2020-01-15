@@ -1,7 +1,7 @@
 <template>
   <div>
-      <swiper v-if="imgUrls.length > 0" indidator-dots="imgUrls.length > 1" >
-      <block v-for="(item, index) in imgUrls" :key="index" >
+    <swiper v-if="imgUrls.length > 0" indidator-dots="imgUrls.length > 1">
+      <block v-for="(item, index) in imgUrls" :key="index">
         <swiper-item>
           <image :src="item" mode="scaleToFill"></image>
         </swiper-item>
@@ -9,8 +9,13 @@
     </swiper>
 
     <ul class="container log-list">
-      <li v-for="(log, index) in logs" :class="{ red: aa }" :key="index" class="log-item">
-        <card :text="(index + 1) + ' . ' + log"></card>
+      <li
+        v-for="(log, index) in logs"
+        :class="{ red: aa }"
+        :key="index"
+        class="log-item"
+      >
+        <!-- <card :text="(index + 1) + ' . ' + log"></card> -->
       </li>
     </ul>
   </div>
@@ -18,14 +23,14 @@
 
 <script>
 import { formatTime } from '@/utils/index'
-import card from '@/components/card'
+// import card from '@/components/card'
 
 export default {
   components: {
-    card
+    // card
   },
 
-  data () {
+  data() {
     return {
       logs: [],
       imgUrls: [
@@ -36,14 +41,14 @@ export default {
     }
   },
 
-  created () {
+  created() {
     let logs
     if (mpvuePlatform === 'my') {
-      logs = mpvue.getStorageSync({key: 'logs'}).data || []
+      logs = mpvue.getStorageSync({ key: 'logs' }).data || []
     } else {
       logs = mpvue.getStorageSync('logs') || []
     }
-    this.logs = logs.map(log => formatTime(new Date(log)))
+    this.logs = logs.map((log) => formatTime(new Date(log)))
   }
 }
 </script>
