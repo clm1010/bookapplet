@@ -47,7 +47,7 @@ if (process.env.PLATFORM === 'swan') {
 // })
 
 // proxy api requests
-Object.keys(proxyTable).forEach(function (context) {
+Object.keys(proxyTable).forEach(function(context) {
   var options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }
@@ -66,13 +66,16 @@ app.use(require('connect-history-api-fallback')())
 // app.use(hotMiddleware)
 
 // serve pure static assets
-var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+var staticPath = path.posix.join(
+  config.dev.assetsPublicPath,
+  config.dev.assetsSubDirectory
+)
 app.use(staticPath, express.static('./static'))
 
 // var uri = 'http://localhost:' + port
 
 var _resolve
-var readyPromise = new Promise(resolve => {
+var readyPromise = new Promise((resolve) => {
   _resolve = resolve
 })
 
@@ -88,8 +91,9 @@ var readyPromise = new Promise(resolve => {
 
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = port
-  portfinder.getPortPromise()
-  .then(newPort => {
+  portfinder
+    .getPortPromise()
+    .then((newPort) => {
       if (port !== newPort) {
         console.log(`${port}端口被占用，开启新端口${newPort}`)
       }
@@ -105,7 +109,8 @@ module.exports = new Promise((resolve, reject) => {
           server.close()
         }
       })
-  }).catch(error => {
-    console.log('没有找到空闲端口，请打开任务管理器杀死进程端口再试', error)
-  })
+    })
+    .catch((error) => {
+      console.log('没有找到空闲端口，请打开任务管理器杀死进程端口再试', error)
+    })
 })

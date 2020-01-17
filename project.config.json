@@ -11,8 +11,6 @@
   "compileType": "miniprogram",
   "appid": "wxbe1f104dbced345d",
   "projectname": "bookapplet",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
       "current": -1,

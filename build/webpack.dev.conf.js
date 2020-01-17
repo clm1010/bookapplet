@@ -55,13 +55,14 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common/vendor',
-      minChunks: function (module, count) {
+      minChunks: function(module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
-          module.resource &&
-          /\.js$/.test(module.resource) &&
-          module.resource.indexOf('node_modules') >= 0
-        ) || count > 1
+          (module.resource &&
+            /\.js$/.test(module.resource) &&
+            module.resource.indexOf('node_modules') >= 0) ||
+          count > 1
+        )
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
