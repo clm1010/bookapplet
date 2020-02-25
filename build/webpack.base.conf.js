@@ -162,7 +162,7 @@ if (/^wx$/.test(PLATFORM)) {
       new CopyWebpackPlugin([
         {
           from: resolve('node_modules/@vant/weapp/dist'),
-          to: resolve('dist/wx/@vant/weapp/dist'),
+          to: resolve('dist/wx/vant-weapp/dist'),
           ignore: ['.*']
         }
       ])

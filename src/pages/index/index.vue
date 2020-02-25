@@ -1,19 +1,37 @@
 <template>
-  <div>
-    <h1 class="msg">我的图书</h1>
-    <van-button type="primary">主要按钮</van-button>
+  <div class="home">
+    <search-bar :disabled="true" @onClick="onSearchBarClick" />
+    <home-card />
+    <!--
+      <image-view
+      src="https://www.youbaobao.xyz/mpvue-res/big.jpg"
+      round
+      mode="scaleToFill"
+      height="200px"
+    />
+    -->
   </div>
 </template>
 
 <script>
+import SearchBar from '@/components/home/SearchBar'
+import HomeCard from '@/components/home/HomeCard'
+import ImageView from '@/components/base/ImageView'
 export default {
+  components: {
+    SearchBar,
+    HomeCard,
+    ImageView
+  },
   data() {
     return {}
   },
 
-  components: {},
-
-  methods: {},
+  methods: {
+    onSearchBarClick() {
+      // 跳转到搜索页
+    }
+  },
 
   created() {
     // let app = getApp()
@@ -21,8 +39,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.msg {
-  color: red;
-}
-</style>
+<style lang="scss" scoped></style>
