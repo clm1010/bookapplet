@@ -71,13 +71,13 @@ export default {
     onLoad() {
       this.isLoading = false
       this.error = false
-      console.log('onLoad')
+      // console.log('onLoad')
     },
     /** 图片加载失败事件 */
     onError() {
       this.error = true
       this.isLoading = false
-      console.log('onError')
+      // console.log('onError')
     }
   }
 }
