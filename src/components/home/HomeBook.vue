@@ -39,7 +39,7 @@
             </div>
           </div>
           <div class="cagegory-wrapper" v-else>
-            <div class="cagegory-text">{{ item.categoryText }}</div>
+            <div class="cagegory-text">{{ item.text }}</div>
             <div class="cagegory-num">{{ item.num }}本书</div>
             <div class="cagegory-img-wrapper">
               <div class="cagegory-img1">
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { HOME_BOOK_MODE } from '@/utils/const'
+import { HOME_BOOK_MODE, CATEGORY } from '@/utils/const'
 import ImageView from '@/components/base/ImageView'
 export default {
   name: 'HomeBook',
@@ -132,6 +132,9 @@ export default {
     bookData() {
       const { data, row, col } = this
       if (data && data.length > 0) {
+        data.forEach((book) => {
+          book.text = CATEGORY[book.categoryText.toLowerCase()]
+        })
         const number = row * col
         const _bookData = data.slice(0, number)
         const _bookDataRow = []
@@ -147,7 +150,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.bookData)
+    // console.log(this.bookData)
   },
   methods: {
     /** 点击更多按钮事件 */
@@ -164,7 +167,6 @@ export default {
 
 <style lang="scss" scoped>
 .home-book {
-  margin-top: 23px;
   .home-book-header {
     padding: 13px 0 0 20.5px;
   }
@@ -220,8 +222,17 @@ export default {
         .cagegory-wrapper {
           position: relative;
           display: flex;
+          flex-direction: column;
+          justify-content: space-between;
           background-color: rgba(248, 249, 251, 1);
+          border-radius: 10px;
+          height: 96px;
+          padding: 13.5px 0 14.5px 16px;
+          box-sizing: border-box;
           .cagegory-text {
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
             font-size: 16px;
             line-height: 22.5px;
             color: rgba(33, 40, 50, 1);
@@ -232,9 +243,26 @@ export default {
             color: rgba(134, 134, 134, 1);
           }
           .cagegory-img-wrapper {
+            position: absolute;
+            right: 0;
+            bottom: 0;
             .cagegory-img1 {
+              position: absolute;
+              right: 0;
+              bottom: -5px;
+              z-index: 100;
+              width: 48px;
+              border-radius: 0 0 10px 0;
+              >>> .image {
+                border-radius: 0 0 10px 0;
+              }
             }
             .cagegory-img2 {
+              position: absolute;
+              right: 30px;
+              bottom: -5px;
+              z-index: 90;
+              width: 36px;
             }
           }
         }

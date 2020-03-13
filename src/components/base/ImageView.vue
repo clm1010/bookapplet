@@ -60,7 +60,14 @@ export default {
   },
   watch: {
     /** 监听src变化，如果src变化，则将isLoading置为true */
-    src(newValue, preValue) {}
+    src(newValue, preValue) {
+      if (newValue && newValue.length > 0 && newValue !== preValue) {
+        this.$nextTick(() => {
+          this.isLoading = true
+          this.error = false
+        })
+      }
+    }
   },
   methods: {
     /** 图片点击事件 */

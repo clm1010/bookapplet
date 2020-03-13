@@ -31,6 +31,15 @@ module.exports = {
         asyncArrow: 'never'
       }
     ]
+    // 'no-unused-vars': [
+    //   'error',
+    //   {
+    //     // 允许声明未使用变量
+    //     vars: 'local',
+    //     // 参数不检查
+    //     args: 'none'
+    //   }
+    // ]
   },
   globals: {
     App: true,

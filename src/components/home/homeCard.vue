@@ -3,29 +3,22 @@
     <div class="home-card-inner">
       <div class="user-info">
         <div class="avatar-wrapper">
-          <ImageView src="https://www.youbaobao.xyz/mpvue-res/logo.jpg" round />
+          <ImageView :src="avatar" round />
         </div>
-        <div class="nickname">{{ 'CLM' }}</div>
+        <div class="nickname">{{ nickname }}</div>
         <div class="shelf-text">书架共有{{ 3 }}本好书</div>
         <div class="round-item"></div>
         <div class="shelf-text">特别精选</div>
       </div>
       <div class="book-info">
         <div class="book-wrapper">
-          <div class="book-img-wrapper">
-            <ImageView
-              src="https://www.youbaobao.xyz/book/res/img//EarthSciences/978-981-10-3713-9_CoverFigure.jpg"
-            />
-          </div>
-          <div class="book-img-wrapper">
-            <ImageView
-              src="https://www.youbaobao.xyz/book/res/img//EarthSciences/978-981-10-3713-9_CoverFigure.jpg"
-            />
-          </div>
-          <div class="book-img-wrapper">
-            <ImageView
-              src="https://www.youbaobao.xyz/book/res/img//EarthSciences/978-981-10-3713-9_CoverFigure.jpg"
-            />
+          <div
+            class="book-img-wrapper"
+            v-for="(item, index) in bookList"
+            :key="index"
+            @click="onBookClick"
+          >
+            <ImageView :src="item.cover" />
           </div>
         </div>
         <div class="shelf-wrapper">
@@ -70,11 +63,28 @@ export default {
   data() {
     return {}
   },
+  computed: {
+    avatar() {
+      return (
+        (this.data && this.data.userInfo && this.data.userInfo.avatar) || ''
+      )
+    },
+    nickname() {
+      return (
+        (this.data && this.data.userInfo && this.data.userInfo.nickname) || ''
+      )
+    },
+    bookList() {
+      return (this.data && this.data.bookList) || []
+    }
+  },
   methods: {
     /** 跳转到书架列表 */
     gotoShelf() {},
     /** 图书点击事件 */
-    onBookClick() {},
+    onBookClick() {
+      this.$emit('onClick')
+    },
     /** 签到事件 */
     sign() {},
     onFeedBackClick() {
