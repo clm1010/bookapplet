@@ -9,7 +9,25 @@ export function getSetting(auth, onSuccess, onFail) {
       }
     },
     fail(res) {
+      console.log(res) // 直接抛出异常
+    }
+  })
+}
+
+/** 获取用户信息 */
+export function getUserInfo(onSuccess, onFail) {
+  mpvue.getUserInfo({
+    success(res) {
       console.log(res)
+      const { userInfo } = res
+      if (userInfo) {
+        onSuccess(userInfo)
+      } else {
+        onFail(res)
+      }
+    },
+    fail(res) {
+      console.log(res) // 直接抛出异常
     }
   })
 }

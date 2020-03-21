@@ -8,7 +8,13 @@
         <div class="auth-title">登录小慕读书</div>
         <div class="auth-sub-title">全球好书免费读</div>
       </div>
-      <button class="auth-btn">授权登录</button>
+      <button
+        class="auth-btn"
+        open-type="getUserInfo"
+        @getuserinfo="getUserInfo"
+      >
+        授权登录
+      </button>
     </div>
   </div>
 </template>
@@ -21,6 +27,11 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    getUserInfo() {
+      this.$emit('getUserInfo')
+    }
   }
 }
 </script>
@@ -38,6 +49,7 @@ export default {
   justify-content: center;
   align-items: center;
   .auth-inner-wrapper {
+    position: relative;
     width: 270px;
     height: 248px;
     background-color: rgba(245, 245, 245, 1);
@@ -68,6 +80,15 @@ export default {
     }
 
     .auth-btn {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 49px;
+      line-height: 49px;
+      font-size: 15px;
+      color: #ffffff;
+      background-image: linear-gradient(90deg, #1ea3f5 0%, #0f87fc 100%);
+      border-radius: 0 0 18px 18px;
     }
   }
 }

@@ -62,7 +62,7 @@
         />
       </div>
     </div>
-    <Auth v-if="!isAuth" />
+    <Auth v-if="!isAuth" @getUserInfo="init" />
   </div>
 </template>
 
@@ -73,7 +73,7 @@ import HomeBanner from '@/components/home/HomeBanner'
 import HomeBook from '@/components/home/HomeBook'
 import Auth from '@/components/base/Auth'
 import { getHomeData, recommend, freeRead, hotBook } from '@/api/index'
-import { getSetting } from '@/api/wechat'
+import { getSetting, getUserInfo } from '@/api/wechat'
 export default {
   components: {
     SearchBar,
@@ -106,21 +106,11 @@ export default {
   },
   mounted() {
     // this.getHomeData()
-    this.getSetting()
+    this.init()
   },
   methods: {
-    getSetting() {
-      getSetting(
-        'userInfo',
-        () => {
-          console.log('成功')
-          this.isAuth = true
-        },
-        () => {
-          console.log('失败')
-          this.isAuth = false
-        }
-      )
+    init() {
+      this.getSetting()
     },
     /** 为你推荐改变方法 */
     recommendChange(key) {
@@ -206,6 +196,30 @@ export default {
     /** 点击Banner事件 */
     onBannerClick() {
       console.log('点击Banner事件')
+    },
+    getUserInfo() {
+      getUserInfo(
+        (userInfo) => {
+          console.log(userInfo)
+        },
+        () => {
+          console.log('failed...')
+        }
+      )
+    },
+    getSetting() {
+      getSetting(
+        'userInfo',
+        () => {
+          console.log('成功')
+          this.isAuth = true
+          this.getUserInfo()
+        },
+        () => {
+          console.log('失败')
+          this.isAuth = false
+        }
+      )
     }
   }
 }
