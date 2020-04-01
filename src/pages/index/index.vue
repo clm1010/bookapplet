@@ -73,7 +73,13 @@ import HomeBanner from '@/components/home/HomeBanner'
 import HomeBook from '@/components/home/HomeBook'
 import Auth from '@/components/base/Auth'
 import { getHomeData, recommend, freeRead, hotBook } from '@/api/index'
-import { getSetting, getUserInfo } from '@/api/wechat'
+import {
+  getSetting,
+  getUserInfo,
+  setStorageSync,
+  getStorageSync,
+  getUserOpenId
+} from '@/api/wechat'
 export default {
   components: {
     SearchBar,
@@ -109,6 +115,7 @@ export default {
     this.init()
   },
   methods: {
+    /** 初始化 */
     init() {
       this.getSetting()
     },
@@ -197,16 +204,26 @@ export default {
     onBannerClick() {
       console.log('点击Banner事件')
     },
+    /** 获取用户信息 */
     getUserInfo() {
       getUserInfo(
         (userInfo) => {
           console.log(userInfo)
+          setStorageSync('userInfo', userInfo)
+          const openId = getStorageSync('openId')
+          if (!openId || openId.length === 0) {
+            console.log('请求openId')
+            getUserOpenId()
+          } else {
+            console.log('已获得openId')
+          }
         },
         () => {
-          console.log('failed...')
+          console.log('failed...') // 获取用户信息，抛出异常！
         }
       )
     },
+    /** 获取设置 */
     getSetting() {
       getSetting(
         'userInfo',
