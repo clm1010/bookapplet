@@ -208,11 +208,9 @@ export default {
     getUserInfo() {
       getUserInfo(
         (userInfo) => {
-          console.log(userInfo)
           setStorageSync('userInfo', userInfo)
           const openId = getStorageSync('openId')
           if (!openId || openId.length === 0) {
-            console.log('请求openId')
             getUserOpenId()
           } else {
             console.log('已获得openId')

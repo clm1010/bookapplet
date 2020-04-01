@@ -1,4 +1,4 @@
-import { getOpenId } from '.'
+import { getOpenId } from './index'
 
 export function getSetting(auth, onSuccess, onFail) {
   mpvue.getSetting({
@@ -41,7 +41,7 @@ export function setStorageSync(key, data) {
 
 /** 获取存储同步 */
 export function getStorageSync(key) {
-  mpvue.getStorageSync(key)
+  return mpvue.getStorageSync(key)
 }
 
 /** 获取微信用户的openId */
@@ -52,7 +52,6 @@ export function getUserOpenId(callback) {
         const { code } = res
         getOpenId(code)
           .then((response) => {
-            console.log(response)
             const {
               data: {
                 data: { openid }
@@ -60,7 +59,6 @@ export function getUserOpenId(callback) {
             } = response
             setStorageSync('openId', openid)
             callback && callback(openid)
-            console.log(openid)
           })
           .catch((err) => {
             console.log(err) // 直接抛出异常
