@@ -3,7 +3,12 @@
     <div class="auth-inner-wrapper">
       <div class="auth-info-wrapper">
         <div class="auth-img">
-          <ImageView src="https://www.youbaobao.xyz/mpvue-res/logo.jpg" round />
+          <ImageView
+            src="https://www.youbaobao.xyz/mpvue-res/logo.jpg"
+            round
+            height="100%"
+            mode="scaleToFill"
+          />
         </div>
         <div class="auth-title">登录小慕读书</div>
         <div class="auth-sub-title">全球好书免费读</div>

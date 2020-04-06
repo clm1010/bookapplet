@@ -72,3 +72,16 @@ export function getUserOpenId(callback) {
     }
   })
 }
+
+/** 显示加载 */
+export function showLoading(title) {
+  mpvue.showLoading({
+    title,
+    mask: true
+  })
+}
+
+/** 隐藏加载 */
+export function hideLoading() {
+  mpvue.hideLoading()
+}

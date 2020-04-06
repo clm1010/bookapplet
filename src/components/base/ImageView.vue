@@ -1,5 +1,5 @@
 <template>
-  <div class="image-view">
+  <div class="image-view" :style="{ height }">
     <img
       v-show="!isLoading && !error"
       :class="round ? 'round image' : 'image'"

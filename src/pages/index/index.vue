@@ -62,6 +62,7 @@
         />
       </div>
     </div>
+    <!-- 用户授权组件 -->
     <Auth v-if="!isAuth" @getUserInfo="init" />
   </div>
 </template>
@@ -72,13 +73,21 @@ import HomeCard from '@/components/home/HomeCard'
 import HomeBanner from '@/components/home/HomeBanner'
 import HomeBook from '@/components/home/HomeBook'
 import Auth from '@/components/base/Auth'
-import { getHomeData, recommend, freeRead, hotBook } from '@/api/index'
+import {
+  getHomeData,
+  recommend,
+  freeRead,
+  hotBook,
+  register
+} from '@/api/index'
 import {
   getSetting,
   getUserInfo,
   setStorageSync,
   getStorageSync,
-  getUserOpenId
+  getUserOpenId,
+  showLoading,
+  hideLoading
 } from '@/api/wechat'
 export default {
   components: {
@@ -121,31 +130,46 @@ export default {
     },
     /** 为你推荐改变方法 */
     recommendChange(key) {
-      console.log(key)
+      // console.log(key)
       switch (key) {
         case 'recommend':
           recommend().then((response) => {
-            console.log(response.data.data)
+            // console.log(response.data.data)
             this.recommend = response.data.data
           })
           break
         case 'freeRead':
           freeRead().then((response) => {
-            console.log(response.data.data)
+            // console.log(response.data.data)
             this.freeRead = response.data.data
           })
           break
         case 'hotBook':
           hotBook().then((response) => {
-            console.log(response.data.data)
+            // console.log(response.data.data)
             this.hotBook = response.data.data
           })
           break
       }
     },
+
+    /** 点击分类更多按钮事件 */
+    onCategoryMoreClick() {
+      console.log('分类')
+    },
+    /** 图书点击事件 */
+    onHomeBookClick() {
+      console.log('home book click')
+    },
+    /**  跳转到搜索页 */
+    onSearchBarClick() {},
+    /** 点击Banner事件 */
+    onBannerClick() {
+      console.log('点击Banner事件')
+    },
     /** 获取首页数据 */
-    getHomeData() {
-      getHomeData({ openId: '1234' })
+    getHomeData(openId, userInfo) {
+      getHomeData({ openId })
         .then((response) => {
           // console.log(response)
           const {
@@ -169,51 +193,29 @@ export default {
           this.homeCard = {
             bookList: shelf,
             npm: shelfCount,
-            userInfo: {
-              avatar: 'https://www.youbaobao.xyz/mpvue-res/logo.jpg',
-              nickname: 'CLM'
-            }
+            userInfo
           }
-          // console.log(
-          //   hotBook,
-          //   banner,
-          //   category,
-          //   freeRead,
-          //   keyword,
-          //   recommend,
-          //   shelfCount,
-          //   shelf,
-          //   this.homeCard
-          // )
+          hideLoading()
         })
         .catch((error) => {
           console.log('捕获异常！', error)
+          hideLoading()
         })
-    },
-    /** 点击分类更多按钮事件 */
-    onCategoryMoreClick() {
-      console.log('分类')
-    },
-    /** 图书点击事件 */
-    onHomeBookClick() {
-      console.log('home book click')
-    },
-    /**  跳转到搜索页 */
-    onSearchBarClick() {},
-    /** 点击Banner事件 */
-    onBannerClick() {
-      console.log('点击Banner事件')
     },
     /** 获取用户信息 */
     getUserInfo() {
+      const onOpenIdComplete = (openId, userInfo) => {
+        this.getHomeData(openId, userInfo)
+        register(openId, userInfo)
+      }
       getUserInfo(
         (userInfo) => {
           setStorageSync('userInfo', userInfo)
           const openId = getStorageSync('openId')
           if (!openId || openId.length === 0) {
-            getUserOpenId()
+            getUserOpenId((openId) => onOpenIdComplete(openId, userInfo))
           } else {
-            console.log('已获得openId')
+            onOpenIdComplete(openId, userInfo)
           }
         },
         () => {
@@ -226,12 +228,13 @@ export default {
       getSetting(
         'userInfo',
         () => {
-          console.log('成功')
+          // console.log('成功')
           this.isAuth = true
+          showLoading('正在加载...')
           this.getUserInfo()
         },
         () => {
-          console.log('失败')
+          // console.log('失败')
           this.isAuth = false
         }
       )
