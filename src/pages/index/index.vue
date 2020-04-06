@@ -162,7 +162,9 @@ export default {
       console.log('home book click')
     },
     /**  跳转到搜索页 */
-    onSearchBarClick() {},
+    onSearchBarClick() {
+      this.$router.push('/pages/search/main')
+    },
     /** 点击Banner事件 */
     onBannerClick() {
       console.log('点击Banner事件')
