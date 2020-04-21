@@ -15,7 +15,7 @@
         <div class="book-info-wrapper">
           <div class="book-title">{{ book.title }}</div>
           <div class="book-author">{{ book.author }}</div>
-          <div class="book-category">{{ book.category }}</div>
+          <div class="book-category">{{ book.categoryText }}</div>
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@ export default {
   .search-table-inner {
     .search-table-book {
       border: 1px solid red;
-      margin: 15.5px 0;
+      margin: 14.5px 0;
       display: flex;
       align-items: center;
       .book-img-wrapper {
@@ -59,11 +59,28 @@ export default {
         }
       }
       .book-info-wrapper {
+        width: 80%;
+        margin-left: 15.5px;
         .book-title {
+          width: 100%;
+          font-size: 16px;
+          line-height: 22.5px;
+          font-weight: 500;
+          color: #333333;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
         .book-author {
+          font-size: 13px;
+          line-height: 18px;
+          color: rgba(0, 0, 0, 0.65);
+          margin-top: 5px;
         }
         .book-category {
+          font-size: 13px;
+          line-height: 18px;
+          color: rgba(0, 0, 0, 0.45);
         }
       }
     }
