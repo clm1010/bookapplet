@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'SearchItem',
   props: {
     title: String,
     subTitle: String,
