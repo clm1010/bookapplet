@@ -1,24 +1,27 @@
 <template>
   <div class="search-list-wrapper">
     <SearchItem
-      :icon="category.icon"
-      :title="category.title"
-      :subTitle="category.subTitle"
-      @onClick="showList(category.title, 'category')"
+      v-if="category"
+      icon="apps-o"
+      :title="category"
+      sub-title="Category"
+      @onClick="showList(category, 'category')"
     />
     <SearchItem
-      :icon="author.icon"
-      :title="author.title"
-      :subTitle="author.subTitle"
-      @onClick="showList(author.title, 'author')"
+      v-if="author"
+      icon="user-o"
+      :title="author"
+      sub-title="Author"
+      @onClick="showList(author, 'author')"
     />
     <SearchItem
-      :icon="publisher.icon"
-      :title="publisher.title"
-      :subTitle="publisher.subTitle"
-      @onClick="showList(publisher.title, 'publisher')"
+      v-if="publisher"
+      icon="newspaper-o"
+      :title="publisher"
+      sub-title="publisher"
+      @onClick="showList(publisher, 'publisher')"
     />
-    <SearchTable :data="data.list" @onClick="onBookClick" />
+    <SearchTable :data="data.book" @onClick="onBookClick" />
   </div>
 </template>
 
@@ -32,27 +35,47 @@ export default {
     SearchTable
   },
   props: {
-    data: Object
+    /** 列表数据 */
+    data: {
+      type: Object,
+      default: {}
+    }
   },
   computed: {
     category() {
-      return this.data.item[0]
+      if (this.data && this.data.category && this.data.category.length > 0) {
+        return this.data.category[0].categoryText
+      } else {
+        return null
+      }
     },
     author() {
-      return this.data.item[1]
+      if (this.data && this.data.author && this.data.author.length > 0) {
+        return this.data.author[0].author
+      } else {
+        return null
+      }
     },
     publisher() {
-      return this.data.item[2]
+      if (this.data && this.data.publisher && this.data.publisher.length > 0) {
+        return this.data.publisher[0].publisher
+      } else {
+        return null
+      }
     }
   },
   data() {
     return {}
   },
   methods: {
+    /** 展示分类点击后的列表 */
     showList(text, key) {
       console.log(text, key)
     },
-    onBookClick() {}
+    /** 图书点击事件 */
+    onBookClick(book) {
+      console.log(book)
+    }
   }
 }
 </script>

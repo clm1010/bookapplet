@@ -27,7 +27,7 @@
             class="arrow"
             name="arrow"
             size="12px"
-            color="#828489"
+            color="rgba(130, 132, 137,1)"
           ></van-icon>
         </div>
       </div>
@@ -48,7 +48,10 @@ export default {
   },
   props: {
     /** 界面需要展示的数据，userInfo为用户信息，bookList为推荐图书信息，num为书架图书数量 */
-    data: Object,
+    data: {
+      type: Object,
+      default: null
+    },
     /** 今天是否签到 */
     hasSign: {
       type: Boolean,
@@ -107,7 +110,11 @@ export default {
 
 <style lang="scss" scoped>
 .home-card {
-  background-image: linear-gradient(-90deg, #54575f 0%, #595b60 100%);
+  background-image: linear-gradient(
+    -90deg,
+    rgba(84, 87, 95, 1) 0%,
+    rgba(89, 91, 96, 1) 100%
+  );
   border-radius: 15px;
   margin: 22px 20px 0;
   .home-card-inner {
@@ -124,7 +131,7 @@ export default {
       .nickname,
       .shelf-text {
         font-size: 12px;
-        color: #ffffff;
+        color: rgba(255, 255, 255, 1);
       }
       .nickname {
         margin: 0 8.5px;
@@ -135,7 +142,7 @@ export default {
       .round-item {
         width: 4px;
         height: 4px;
-        background-color: #a2a2a2;
+        background-color: rgba(162, 162, 162, 1);
         border-radius: 50%;
         margin: 0 8px;
       }
@@ -159,7 +166,7 @@ export default {
           width: 12px;
           font-size: 12px;
           word-break: break-all;
-          color: #fff;
+          color: rgba(255, 255, 255, 1);
           opacity: 0.8;
         }
       }
@@ -170,7 +177,7 @@ export default {
       right: 0;
       width: 44.5px;
       height: 23.5px;
-      background-color: rgba($color: #d8d8d8, $alpha: 0.3);
+      background-color: rgba(216, 216, 216, 1);
       border-radius: 100px 0 0 100px;
     }
     .feedback-text {
@@ -182,7 +189,7 @@ export default {
       line-height: 23.5px;
       text-align: center;
       font-size: 11px;
-      color: #fff;
+      color: rgba(255, 255, 255, 1);
     }
   }
 }

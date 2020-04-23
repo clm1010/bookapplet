@@ -1,97 +1,90 @@
 <template>
   <div>
-    <SearchList :data="data" />
+    <SearchBar :focus="searchFocus" @onChange="onChange" @onClear="onClear" />
+    <TagGroup
+      v-if="hotSearch.length > 0 && !showList"
+      header-text="热门搜索"
+      btn-text="换一批"
+      :value="hotSearch"
+      @onBtnClick="changeHotSearch"
+      @onTagClick="showBookDetail"
+    />
+    <TagGroup
+      v-if="historySearch.length > 0 && !showList"
+      header-text="历史搜索"
+      btn-text="清空"
+      :value="historySearch"
+      @onBtnClick="clearHistorySearch"
+      @onTagClick="searchKeyWord"
+    />
+    <SearchList v-if="showList" :data="searchList" />
   </div>
 </template>
 
 <script>
+import SearchBar from '@/components/home/SearchBar'
+import TagGroup from '@/components/base/TagGroup'
 import SearchList from '@/components/search/SearchList'
-
+import { getStorageSync } from '@/api/wechat'
+import { search } from '@/api/index'
 export default {
   name: 'Search',
   components: {
+    SearchBar,
+    TagGroup,
     SearchList
   },
   computed: {
-    data() {
-      return {
-        item: this.item,
-        list: this.list
-      }
+    showList() {
+      const keys = Object.keys(this.searchList)
+      return keys.length > 0
     }
   },
   data() {
     return {
-      item: [
-        {
-          icon: 'apps-o',
-          title: 'Computer Science',
-          subTitle: 'category'
-        },
-        {
-          icon: 'contact',
-          title: 'Computer Science',
-          subTitle: 'Author'
-        },
-        {
-          icon: 'newspaper-o',
-          title: 'Computer Science',
-          subTitle: 'Publisher'
-        }
-      ],
-      list: [
-        {
-          id: 225,
-          fileName: '2016_Book_MicrofinanceEUStructuralFundsA',
-          cover:
-            'https://www.youbaobao.xyz/book/res/img/Economics/2016_Book_MicrofinanceEUStructuralFundsA.jpeg',
-          title:
-            'Microfinance, EU Structural Funds and Capacity Building for Managing Authorities',
-          author: 'Giovanni Nicola Pes',
-          publisher: 'Palgrave Macmillan',
-          bookId: '2016_Book_MicrofinanceEUStructuralFundsA',
-          category: 3,
-          categoryText: 'Economics',
-          language: 'en',
-          rootFile: 'OEBPS/9781137536013.opf'
-        },
-        {
-          id: 88,
-          fileName: '2018_Book_BetweenMobilityAndMigration',
-          cover:
-            'https://www.youbaobao.xyz/book/res/img/SocialSciences/978-3-319-77991-1_CoverFigure.jpg',
-          title: 'Between Mobility and Migration',
-          author: 'Peter Scholten',
-          publisher: 'Springer International Publishing',
-          bookId: '2018_Book_BetweenMobilityAndMigration',
-          category: 2,
-          categoryText: 'SocialSciences',
-          language: 'en',
-          rootFile: 'OEBPS/package.opf'
-        },
-        {
-          id: 24,
-          fileName: '2018_Book_SecurityInComputerAndInformati',
-          cover:
-            'https://www.youbaobao.xyz/book/res/img/ComputerScience/978-3-319-95189-8_CoverFigure.jpg',
-          title: 'Security in Computer and Information Sciences',
-          author: 'Erol Gelenbe',
-          publisher: 'Springer International Publishing',
-          bookId: '2018_Book_SecurityInComputerAndInformati',
-          category: 1,
-          categoryText: 'ComputerScience',
-          language: 'en',
-          rootFile: 'OEBPS/package.opf'
-        }
-      ]
+      hotSearch: [],
+      historySearch: [],
+      searchList: {},
+      searchFocus: true,
+      openId: ''
     }
   },
+  mounted() {
+    this.openId = getStorageSync('openId')
+    console.log(this.openId)
+  },
   methods: {
-    onTagClick(text, index) {
-      console.log('tag...', text, index)
+    /** 清空 */
+    onClear() {
+      this.searchList = {}
     },
-    onBtnClick() {
-      console.log('btn...')
+    onChange(keyword) {
+      console.log(keyword)
+      if (!keyword || keyword.trim().length === 0) {
+        return
+      }
+      this.onSearch(keyword)
+    },
+    onSearch(keyword) {
+      search({
+        keyword,
+        openId: this.openId
+      }).then((response) => {
+        this.searchList = response.data.data
+        console.log(this.searchList)
+      })
+    },
+    clearHistorySearch() {
+      console.log('clear history search')
+    },
+    searchKeyWord() {
+      console.log('search key word')
+    },
+    showBookDetail() {
+      console.log('show book detail')
+    },
+    changeHotSearch() {
+      console.log('change hot search')
     }
   }
 }

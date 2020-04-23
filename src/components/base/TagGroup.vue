@@ -19,17 +19,31 @@ export default {
     Tag
   },
   props: {
-    headerText: String,
-    btnText: String,
-    value: Array
+    /** 标题文本 */
+    headerText: {
+      type: String,
+      default: ''
+    },
+    /** 按钮文本 */
+    btnText: {
+      type: String,
+      default: ''
+    },
+    /** 标签数据 */
+    value: {
+      type: Array,
+      default: []
+    }
   },
   data() {
     return {}
   },
   methods: {
+    /** 标签点击事件 */
     onTagClick(text, index) {
       this.$emit('onTagClick', text, index)
     },
+    /** 按钮点击事件 */
     onBtnClick() {
       this.$emit('onBtnClick')
     }
@@ -38,6 +52,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .tag-group-wrapper {
+  margin-top: 35px;
   .tag-group-header {
     display: flex;
     justify-content: space-between;

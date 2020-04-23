@@ -91,8 +91,12 @@ export default {
       height: 49px;
       line-height: 49px;
       font-size: 15px;
-      color: #ffffff;
-      background-image: linear-gradient(90deg, #1ea3f5 0%, #0f87fc 100%);
+      color: rgba(255, 255, 255, 1);
+      background-image: linear-gradient(
+        90deg,
+        rgba(30, 163, 245, 1) 0%,
+        rgba(15, 135, 252, 1) 100%
+      );
       border-radius: 0 0 18px 18px;
     }
   }

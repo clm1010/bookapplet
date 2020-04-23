@@ -64,16 +64,16 @@ export default {
     .title {
       font-size: 18px;
       font-weight: 500;
-      color: #fff;
+      color: rgba(255, 255, 255, 1);
     }
     .sub-title {
       padding: 5px 15px;
-      background-color: #4585ff;
-      border: 1px solid #ccc;
+      background-color: rgba(69, 133, 255, 1);
+      border: 1px solid rgba(204, 204, 204, 1);
       border-radius: 50px;
       margin-top: 10px;
       font-size: 14px;
-      color: #fff;
+      color: rgba(255, 255, 255, 1);
     }
   }
 }

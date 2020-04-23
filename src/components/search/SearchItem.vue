@@ -20,14 +20,27 @@
 export default {
   name: 'SearchItem',
   props: {
-    title: String,
-    subTitle: String,
-    icon: String
+    /** 标题文本 */
+    title: {
+      type: String,
+      default: ''
+    },
+    /** 副标题文本 */
+    subTitle: {
+      type: String,
+      default: ''
+    },
+    /** 图标类型 */
+    icon: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {}
   },
   methods: {
+    /** 分类点击事件 */
     onClick() {
       this.$emit('onClick')
     }
@@ -49,15 +62,20 @@ export default {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background-color: #f7f7f9;
+      background-color: rgba(247, 247, 249, 1);
     }
   }
   .search-item-info {
+    width: 80%;
     margin-left: 10px;
     .search-item-title {
-      color: #333;
+      width: 100%;
+      color: rgba(51, 51, 51, 1);
       font-size: 14px;
       line-height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .search-item-sub-title {
       color: rgba(0, 0, 0, 0.5);

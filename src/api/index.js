@@ -3,8 +3,8 @@ import { APP_ID, APP_SECRET } from '../utils/const'
 const API_URL = 'https://test.youbaobao.xyz:18081'
 
 /** 获取首页数据 */
-export function getHomeData(parpms) {
-  return get(`${API_URL}/book/home/v2`, parpms)
+export function getHomeData(params) {
+  return get(`${API_URL}/book/home/v2`, params)
 }
 
 /** 获取"为你推荐"数据 */
@@ -37,4 +37,14 @@ export function register(openId, userInfo) {
     platform: mpvuePlatform,
     ...userInfo
   })
+}
+
+/** 关键词搜索 */
+export function search(params) {
+  return get(`${API_URL}/book/search`, params)
+}
+
+/** 获取热门搜索词 */
+export function hotSearch(params) {
+  return get(`${API_URL}/book/hot-search`, params)
 }

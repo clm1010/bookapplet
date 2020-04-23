@@ -30,12 +30,17 @@ export default {
     ImageView
   },
   props: {
-    data: Array
+    /** 列表数据 */
+    data: {
+      type: Array,
+      default: []
+    }
   },
   data() {
     return {}
   },
   methods: {
+    /** 图书点击事件 */
     onClick(book) {
       this.$emit('onClick', book)
     }
@@ -48,7 +53,6 @@ export default {
   padding: 0 16px;
   .search-table-inner {
     .search-table-book {
-      border: 1px solid red;
       margin: 14.5px 0;
       display: flex;
       align-items: center;

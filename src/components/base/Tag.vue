@@ -8,6 +8,7 @@
 export default {
   name: 'Tag',
   props: {
+    /** 标签文本 */
     text: {
       type: String,
       default: ''
@@ -17,6 +18,7 @@ export default {
     return {}
   },
   methods: {
+    /** 标签点击事件 */
     onClick() {
       this.$emit('onClick')
     }
