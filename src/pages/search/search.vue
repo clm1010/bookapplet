@@ -1,11 +1,17 @@
 <template>
   <div>
-    <SearchBar :focus="searchFocus" @onChange="onChange" @onClear="onClear" />
+    <SearchBar
+      :hot-search="hotSearchKeyword"
+      :focus="searchFocus"
+      @onChange="onChange"
+      @onClear="onClear"
+      @onConfirm="onConfirm"
+    />
     <TagGroup
-      v-if="hotSearch.length > 0 && !showList"
+      v-if="hotSearchArray.length > 0 && !showList"
       header-text="热门搜索"
       btn-text="换一批"
-      :value="hotSearch"
+      :value="hotSearchArray"
       @onBtnClick="changeHotSearch"
       @onTagClick="showBookDetail"
     />
@@ -26,7 +32,7 @@ import SearchBar from '@/components/home/SearchBar'
 import TagGroup from '@/components/base/TagGroup'
 import SearchList from '@/components/search/SearchList'
 import { getStorageSync } from '@/api/wechat'
-import { search } from '@/api/index'
+import { search, hotSearch } from '@/api/index'
 export default {
   name: 'Search',
   components: {
@@ -38,11 +44,19 @@ export default {
     showList() {
       const keys = Object.keys(this.searchList)
       return keys.length > 0
+    },
+    hotSearchArray() {
+      const _hotSearch = []
+      this.hotSearch.forEach((o) => {
+        _hotSearch.push(o.title)
+      })
+      return _hotSearch
     }
   },
   data() {
     return {
       hotSearch: [],
+      hotSearchKeyword: '',
       historySearch: [],
       searchList: {},
       searchFocus: true,
@@ -51,16 +65,24 @@ export default {
   },
   mounted() {
     this.openId = getStorageSync('openId')
-    console.log(this.openId)
+    hotSearch().then((response) => {
+      this.hotSearch = response.data.data
+    })
+    this.hotSearchKeyword = this.$route.query.hotSearch
   },
   methods: {
+    onConfirm() {
+      // 1、判断是否有关键字
+      // 2、如果没有，则获取热门搜索词，通过热门搜索词发起请求
+      // 3、如果有，就用搜索关键字发起请求
+    },
     /** 清空 */
     onClear() {
       this.searchList = {}
     },
     onChange(keyword) {
-      console.log(keyword)
       if (!keyword || keyword.trim().length === 0) {
+        this.searchList = {}
         return
       }
       this.onSearch(keyword)
@@ -71,7 +93,6 @@ export default {
         openId: this.openId
       }).then((response) => {
         this.searchList = response.data.data
-        console.log(this.searchList)
       })
     },
     clearHistorySearch() {
@@ -80,8 +101,8 @@ export default {
     searchKeyWord() {
       console.log('search key word')
     },
-    showBookDetail() {
-      console.log('show book detail')
+    showBookDetail(text, index) {
+      console.log('show book detail', text, index)
     },
     changeHotSearch() {
       console.log('change hot search')

@@ -163,7 +163,12 @@ export default {
     },
     /**  跳转到搜索页 */
     onSearchBarClick() {
-      this.$router.push('/pages/search/main')
+      this.$router.push({
+        path: '/pages/search/main',
+        query: {
+          hotSearch: this.hotSearch
+        }
+      })
     },
     /** 点击Banner事件 */
     onBannerClick() {

@@ -45,6 +45,6 @@ export function search(params) {
 }
 
 /** 获取热门搜索词 */
-export function hotSearch(params) {
-  return get(`${API_URL}/book/hot-search`, params)
+export function hotSearch() {
+  return get(`${API_URL}/book/hot-search`)
 }

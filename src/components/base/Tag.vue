@@ -28,11 +28,13 @@ export default {
 
 <style lang="scss" scoped>
 .tag-wrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
   background-color: rgba(247, 247, 249, 1);
   border-radius: 16px;
   padding: 6px 17px;
+  box-sizing: border-box;
   .tag {
     width: 100%;
     overflow: hidden;
